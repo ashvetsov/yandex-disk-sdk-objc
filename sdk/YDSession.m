@@ -158,6 +158,44 @@
     [request start];
 }
 
+- (void)fetchUserInfo:(YDFetchUserInfoHandler)block
+{
+    NSURL *url = [YDSession urlForDiskPath:@"/?userinfo"];
+    if (!url) {
+        block([NSError errorWithDomain:kYDSessionBadArgumentErrorDomain
+                                  code:0
+                              userInfo:nil], nil);
+        return;
+    }
+    
+    YDDiskRequest *request = [[YDDiskRequest alloc] initWithURL:url];
+    [self prepareRequest:request];
+    
+    request.callbackQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    request.didFailBlock = ^(NSError *error) {
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+        userInfo[@"URL"] = url;
+        if (error) userInfo[@"error"] = error;
+        [[NSNotificationCenter defaultCenter] postNotificationInMainQueueWithName:kYDSessionDidFailWithFetchStatusRequestNotification
+                                                                           object:self
+                                                                         userInfo:userInfo];
+        block([NSError errorWithDomain:error.domain code:error.code userInfo:userInfo], nil);
+    };
+    
+    request.didFinishLoadingBlock = ^(NSData *receivedData) {
+        NSDictionary *userInfo = @{@"URL": url};
+        [[NSNotificationCenter defaultCenter] postNotificationInMainQueueWithName:kYDSessionDidCreateDirectoryNotification
+                                                                           object:self
+                                                                         userInfo:userInfo];
+        YDUserInfo *userInfoData = [YDUserInfo alloc];
+        userInfoData.login = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"login:" withString:@""];
+        block(nil, userInfoData);
+    };
+    
+    [request start];
+}
+
 - (void)createDirectoryAtPath:(NSString *)path completion:(YDHandler)block
 {
     NSURL *url = [YDSession urlForDiskPath:path];

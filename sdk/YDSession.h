@@ -4,6 +4,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "YDUserInfo.h"
 #import "YDItemStat.h"
 #import "YDSessionDelegate.h"
 
@@ -37,6 +38,8 @@ typedef void (^YDFetchDirectoryHandler)(NSError *err, NSArray *list);
     The result in form of an YDItemStat item, or nil.
  */
 typedef void (^YDFetchStatusHandler)(NSError *err, YDItemStat *item);
+
+typedef void (^YDFetchUserInfoHandler)(NSError *err, YDUserInfo *userInfo);
 
 /**
  @abstract Completion block for publishPath:completion: .
@@ -138,6 +141,8 @@ typedef void (^YDHandler)(NSError *err);
     A handler block as described for YDFetchStatusHandler.
  */
 - (void)fetchStatusForPath:(NSString *)path completion:(YDFetchStatusHandler)block;
+
+- (void)fetchUserInfo:(YDFetchUserInfoHandler)block;
 
 /**
  @abstract Creates a new directory in the cloud.
