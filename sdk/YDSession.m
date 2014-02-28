@@ -17,6 +17,7 @@
 #import "YDDeleteRequest.h"
 #import "YDDiskPOSTRequest.h"
 #import "YDFileUploadRequest.h"
+#import "YDQuotaRequest.h"
 
 
 @interface YDSession ()
@@ -191,6 +192,49 @@
         YDUserInfo *userInfoData = [YDUserInfo alloc];
         userInfoData.login = [[[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"login:" withString:@""];
         block(nil, userInfoData);
+    };
+    
+    [request start];
+}
+
+- (void)fetchQuotaInfo:(YDFetchQuotaInfoHandler)block {
+    NSURL *url = [YDSession urlForDiskPath:@"/"];
+    if (!url) {
+        block([NSError errorWithDomain:kYDSessionBadArgumentErrorDomain
+                                  code:0
+                              userInfo:nil], nil);
+        return;
+    }
+    
+    YDPROPFINDRequest *request = [[YDPROPFINDRequest alloc] initWithURL:url];
+    [self prepareRequest:request];
+    request.depth = YDWebDAVDepth0;
+    
+    request.callbackQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    request.props = @[[YDQuotaRequest availableBytesProp],
+                      [YDQuotaRequest usedBytesProp]];
+    
+    request.didFailBlock = ^(NSError *error) {
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+        userInfo[@"URL"]=url;
+        if (error) userInfo[@"error"] = error;
+        [[NSNotificationCenter defaultCenter] postNotificationInMainQueueWithName:kYDSessionDidFailWithFetchStatusRequestNotification
+                                                                           object:self
+                                                                         userInfo:userInfo];
+        block([NSError errorWithDomain:error.domain code:error.code userInfo:userInfo], nil);
+    };
+    
+    request.didReceiveMultistatusResponsesBlock = ^(NSArray *responses) {
+        for (YDMultiStatusResponse *response in responses) {
+            if ([response.URL.path isEqual:url.path]) {
+                YDQuotaInfo *info = [[YDQuotaInfo alloc] initWithSession:self
+                                                              dictionary:response.successPropValues
+                                                                     URL:response.URL];
+                block(nil, info);
+                return;
+            }
+        }
+        block(nil, nil);
     };
     
     [request start];

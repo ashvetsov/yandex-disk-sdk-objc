@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "YDUserInfo.h"
+#import "YDQuotaInfo.h"
 #import "YDItemStat.h"
 #import "YDSessionDelegate.h"
 
@@ -40,6 +41,8 @@ typedef void (^YDFetchDirectoryHandler)(NSError *err, NSArray *list);
 typedef void (^YDFetchStatusHandler)(NSError *err, YDItemStat *item);
 
 typedef void (^YDFetchUserInfoHandler)(NSError *err, YDUserInfo *userInfo);
+
+typedef void (^YDFetchQuotaInfoHandler)(NSError *err, YDQuotaInfo *quotaInfo);
 
 /**
  @abstract Completion block for publishPath:completion: .
@@ -143,6 +146,8 @@ typedef void (^YDHandler)(NSError *err);
 - (void)fetchStatusForPath:(NSString *)path completion:(YDFetchStatusHandler)block;
 
 - (void)fetchUserInfo:(YDFetchUserInfoHandler)block;
+
+- (void)fetchQuotaInfo:(YDFetchQuotaInfoHandler)block;
 
 /**
  @abstract Creates a new directory in the cloud.

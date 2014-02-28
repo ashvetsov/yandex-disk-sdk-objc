@@ -111,6 +111,12 @@
 		0FEAB93D177895F300E17FFD /* YDSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FBDAA131760617B00B759EC /* YDSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0FEAB94D17789A4A00E17FFD /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEAB94C17789A4A00E17FFD /* libxml2.dylib */; };
 		0FEAB94E17789BAF00E17FFD /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FEAB94C17789A4A00E17FFD /* libxml2.dylib */; };
+		53B9858A18C115D400456815 /* YDQuotaInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B9858818C115D400456815 /* YDQuotaInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		53B9858B18C115D400456815 /* YDQuotaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B9858918C115D400456815 /* YDQuotaInfo.m */; };
+		53B9858C18C115D400456815 /* YDQuotaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B9858918C115D400456815 /* YDQuotaInfo.m */; };
+		53B9859018C1175400456815 /* YDQuotaRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 53B9858E18C1175400456815 /* YDQuotaRequest.h */; };
+		53B9859118C1175400456815 /* YDQuotaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B9858F18C1175400456815 /* YDQuotaRequest.m */; };
+		53B9859218C1175400456815 /* YDQuotaRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B9858F18C1175400456815 /* YDQuotaRequest.m */; };
 		53C54F5418C1118A0084D6B5 /* YDUserInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 53C54F5218C1118A0084D6B5 /* YDUserInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53C54F5518C1118A0084D6B5 /* YDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C54F5318C1118A0084D6B5 /* YDUserInfo.m */; };
 		53C54F5618C1118A0084D6B5 /* YDUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C54F5318C1118A0084D6B5 /* YDUserInfo.m */; };
@@ -237,6 +243,10 @@
 		0FEAB86E1778935B00E17FFD /* libdisk-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libdisk-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FEAB8C1177894CE00E17FFD /* Disk-SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Disk-SDK.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FEAB94C17789A4A00E17FFD /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		53B9858818C115D400456815 /* YDQuotaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDQuotaInfo.h; sourceTree = "<group>"; };
+		53B9858918C115D400456815 /* YDQuotaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDQuotaInfo.m; sourceTree = "<group>"; };
+		53B9858E18C1175400456815 /* YDQuotaRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDQuotaRequest.h; sourceTree = "<group>"; };
+		53B9858F18C1175400456815 /* YDQuotaRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDQuotaRequest.m; sourceTree = "<group>"; };
 		53C54F5218C1118A0084D6B5 /* YDUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YDUserInfo.h; sourceTree = "<group>"; };
 		53C54F5318C1118A0084D6B5 /* YDUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YDUserInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +346,8 @@
 				0F66BE5C178ED6B900D229B5 /* YDConstants.m */,
 				53C54F5218C1118A0084D6B5 /* YDUserInfo.h */,
 				53C54F5318C1118A0084D6B5 /* YDUserInfo.m */,
+				53B9858818C115D400456815 /* YDQuotaInfo.h */,
+				53B9858918C115D400456815 /* YDQuotaInfo.m */,
 				0FBDAA1017605C2500B759EC /* YDItemStat.h */,
 				0FBDAA1117605C2500B759EC /* YDItemStat.m */,
 				0FBDAA131760617B00B759EC /* YDSession.h */,
@@ -414,6 +426,8 @@
 				0F5696AC175C935B00622AB5 /* YDPROPFINDRequest.h */,
 				0F5696AD175C935B00622AB5 /* YDPROPFINDRequest.m */,
 				0F5696A8175C932400622AB5 /* File List Request */,
+				53B9858E18C1175400456815 /* YDQuotaRequest.h */,
+				53B9858F18C1175400456815 /* YDQuotaRequest.m */,
 			);
 			name = "PROPFIND Request";
 			sourceTree = "<group>";
@@ -603,6 +617,7 @@
 			files = (
 				0FEAB93B177895F300E17FFD /* YDItemStat.h in Headers */,
 				53C54F5418C1118A0084D6B5 /* YDUserInfo.h in Headers */,
+				53B9858A18C115D400456815 /* YDQuotaInfo.h in Headers */,
 				0FEAB93C177895F300E17FFD /* YDSessionDelegate.h in Headers */,
 				0FEAB93D177895F300E17FFD /* YDSession.h in Headers */,
 				0FEAB911177895E400E17FFD /* DDXMLElementAdditions.h in Headers */,
@@ -629,6 +644,7 @@
 				0FEAB92B177895E400E17FFD /* YDDateRFC822Prop.h in Headers */,
 				0FEAB92D177895E400E17FFD /* YDPROPFINDRequest.h in Headers */,
 				0FEAB92E177895E400E17FFD /* YDFileListRequest.h in Headers */,
+				53B9859018C1175400456815 /* YDQuotaRequest.h in Headers */,
 				0FEAB930177895E400E17FFD /* YDPROPPATCHProp.h in Headers */,
 				0FEAB931177895E400E17FFD /* YDPROPPATCHRequest.h in Headers */,
 				0FEAB932177895E400E17FFD /* YDDiskPOSTRequest.h in Headers */,
@@ -765,11 +781,13 @@
 				0FEAB8AF1778940C00E17FFD /* YDDiskPOSTRequest.m in Sources */,
 				0FEAB8B01778940C00E17FFD /* YDStreamUploadRequest.m in Sources */,
 				0FEAB8B21778940C00E17FFD /* YDFileUploadRequest.m in Sources */,
+				53B9859118C1175400456815 /* YDQuotaRequest.m in Sources */,
 				0F66BE5E178ED6B900D229B5 /* YDConstants.m in Sources */,
 				0FEAB8B41778940C00E17FFD /* YDRequest.m in Sources */,
 				0FEAB8B51778940C00E17FFD /* YDDiskRequest.m in Sources */,
 				0FEAB8B61778940C00E17FFD /* YDMultistatusRequest.m in Sources */,
 				0FEAB8B71778940C00E17FFD /* YDWebDAVCommon.m in Sources */,
+				53B9858B18C115D400456815 /* YDQuotaInfo.m in Sources */,
 				0FEAB8B81778940C00E17FFD /* YDItemStat.m in Sources */,
 				0FEAB8B91778940C00E17FFD /* YDSession.m in Sources */,
 			);
@@ -804,11 +822,13 @@
 				0FEAB9061778959700E17FFD /* YDDiskPOSTRequest.m in Sources */,
 				0FEAB9071778959700E17FFD /* YDStreamUploadRequest.m in Sources */,
 				0FEAB9091778959700E17FFD /* YDFileUploadRequest.m in Sources */,
+				53B9859218C1175400456815 /* YDQuotaRequest.m in Sources */,
 				0FEAB90B1778959700E17FFD /* YDRequest.m in Sources */,
 				0FEAB90C1778959700E17FFD /* YDDiskRequest.m in Sources */,
 				0FEAB90D1778959700E17FFD /* YDMultistatusRequest.m in Sources */,
 				0FEAB90E1778959700E17FFD /* YDWebDAVCommon.m in Sources */,
 				0FEAB90F1778959700E17FFD /* YDItemStat.m in Sources */,
+				53B9858C18C115D400456815 /* YDQuotaInfo.m in Sources */,
 				0FEAB9101778959700E17FFD /* YDSession.m in Sources */,
 				0FDA1447178FEDAD005129B9 /* YDConstants.m in Sources */,
 			);
